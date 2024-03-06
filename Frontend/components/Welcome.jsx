@@ -1,15 +1,37 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '../constants';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import SignBtn from "./SignBtn";
+
 
 const Welcome = () => {
+    const [isMenuVisible, setIsmenuVisible] = useState(false);
+
+    const toggleMenu =() =>{
+        setIsmenuVisible(!isMenuVisible);
+    }
+    const navigation = useNavigation();
   return (
     <LinearGradient colors={['rgba(255, 254, 230, 0.7)', 'rgba(6, 66, 66, 0.2)']}            
         start={{ x: 0, y: 0.5 }}
         end={{ x: 1, y: 0 }} 
         style={styles.container}
         >
+        <View style={styles.navbar}>
+            <Text style={{color: COLORS.primary, fontSize: 20, fontWeight: 'bold'}}>
+                Spam Detection
+            </Text>
+            <View style={styles.buttonCont}>
+                <SignBtn 
+                    title="Sign In" 
+                    style={styles.Logout}
+                    onPress={() => navigation.navigate('Login')}    
+                />
+            </View> 
+        
+        </View>
       <View style={styles.welcomeCont}>
         <View style={styles.header}>
             <Text style={styles.title}>Welcome to Spam Detection</Text>
@@ -42,6 +64,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  navbar: {
+    width: "95%",
+    height: 30,
+    marginHorizontal:'3%',
+    marginTop: SIZES.medium,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
   welcomeCont: {
     width: '90%',
     flexDirection: 'row',
