@@ -17,8 +17,9 @@ const Predict = () => {
       body: JSON.stringify({ email })
     });
     const data = await response.json();
+    // alert(`Result: ${data.result}`);
     setResult(data.result);
-  };
+    };
 
   return (
     <LinearGradient colors={['rgba(255, 254, 230, 0.7)', 'rgba(6, 66, 66, 0.2)']}            
