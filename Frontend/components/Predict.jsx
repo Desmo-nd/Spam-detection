@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 import { SIZES } from '../constants';
+import Button from './Button';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Predict = () => {
   const [email, setEmail] = useState('');
@@ -19,16 +21,23 @@ const Predict = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['rgba(255, 254, 230, 0.7)', 'rgba(6, 66, 66, 0.2)']}            
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0 }} 
+        style={styles.container}
+        >
       <TextInput
         style={styles.input}
         placeholder="Enter email"
+        placeholderTextColor="grey"
         onChangeText={text => setEmail(text)}
         value={email}
+        multiline
+        numberOfLines={6}
       />
-      <Button title="Predict" onPress={predictSpam} />
+      <Button style={styles.btn} title="Predict" onPress={predictSpam} />
       {result ? <Text style={styles.result}>{`Result: ${result}`}</Text> : null}
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -43,18 +52,25 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    height: 40,
+    height: 100,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+    textAlignVertical: 'top',
+    paddingVertical: 10,
+    fontFamily: 'semibold',
+    fontSize: 16,
   },
   result: {
     marginTop: 20,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 19,
+    fontFamily: 'bold',
     color: 'green',
+  },
+  btn: {
+    width: '100%',
   },
 });
 
