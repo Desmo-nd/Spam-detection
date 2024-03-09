@@ -5,7 +5,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import { useFonts } from 'expo-font';
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 
 
 export default function App() {
