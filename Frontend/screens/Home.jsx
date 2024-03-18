@@ -17,7 +17,10 @@ const Home = () => {
                 <Predict/>
             </View>
         </LinearGradient>
-    </SafeAreaView>
+    </SafeA
+    
+    
+    reaView>
   );
 };
 

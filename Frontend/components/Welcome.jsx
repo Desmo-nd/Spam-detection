@@ -27,7 +27,7 @@ const Welcome = () => {
                 <SignBtn 
                     title="Sign In" 
                     style={styles.Logout}
-                    onPress={() => navigation.navigate('Login')}    
+                      onPress={() => navigation.navigate('Login')}  
                 />
             </View> 
         
