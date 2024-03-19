@@ -9,7 +9,7 @@ const Predict = () => {
   const [result, setResult] = useState('');
 
   const predictSpam = async () => {
-    const response = await fetch('http://192.168.0.109:5000/predict', {
+    const response = await fetch('http://192.168.0.112:5000/predict', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

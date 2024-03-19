@@ -50,7 +50,7 @@ const Signup = ({navigation}) => {
       setLoader(true);
   
       try{
-          const endpoint ="http://192.168.0.109:3000/api/register";
+          const endpoint ="http://192.168.0.112:3000/api/register";
           const data = values;
   
           const response = await axios.post(endpoint, data);

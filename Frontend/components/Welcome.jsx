@@ -23,13 +23,6 @@ const Welcome = () => {
             <Text style={{color: COLORS.primary, fontSize: 20, fontWeight: 'bold'}}>
                 Spam Detection
             </Text>
-            <View style={styles.buttonCont}>
-                <SignBtn 
-                    title="Sign In" 
-                    style={styles.Logout}
-                      onPress={() => navigation.navigate('Login')}  
-                />
-            </View> 
         
         </View>
       <View style={styles.welcomeCont}>
