@@ -39,8 +39,8 @@ if __name__ == '__main__':
 # # IMAP server settings (for Gmail)
 # imap_server = 'imap.gmail.com'
 # imap_port = 993
-# username = 'mwrgdesmond@gmail.com'  # Update with your Gmail email address
-# password = 'zolb fgjb vksq ospq'  # Update with your Gmail password
+# username = ''  # Update with your Gmail email address
+# password = ''  # Update with your Gmail password
 
 # # Connect to the IMAP server
 # imap_conn = imaplib.IMAP4_SSL(imap_server, imap_port)
