@@ -68,6 +68,8 @@ def check_spam_emails():
 
         # Extract email subject, sender, and date
         subject = decode_header(parsed_email['Subject'])[0][0]
+        # Convert bytes object to string
+        subject = subject.decode() if isinstance(subject, bytes) else subject
         sender = parsed_email.get('From')
         date = parsed_email.get('Date')
 
@@ -98,6 +100,7 @@ def check_spam_emails():
     imap_conn.logout()
 
     return {'status': 'Success', 'code': 200, 'emails': email_statuses}
+
 
 @app.route('/check_spam_emails', methods=['GET'])
 def trigger_spam_check():
