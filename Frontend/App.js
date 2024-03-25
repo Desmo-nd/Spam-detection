@@ -5,7 +5,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import { useFonts } from 'expo-font';
-// import 'react-native-gesture-handler';
+import 'react-native-gesture-handler';
 
 
 export default function App() {
@@ -28,15 +28,16 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="Home"
           component={Home}
           options={{ headerShown: false }}
         />
+      <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        
         <Stack.Screen
           name="Signup"
           component={Signup}

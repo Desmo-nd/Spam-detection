@@ -1,77 +1,93 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet } from 'react-native';
-import { SIZES } from '../constants';
-import Button from './Button';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import axios from 'axios';
 
 const Predict = () => {
-  const [email, setEmail] = useState('');
-  const [result, setResult] = useState('');
+  const [status, setStatus] = useState('');
+  const [emailStatus, setEmailStatus] = useState([]);
 
-  const predictSpam = async () => {
-    const response = await fetch('http://192.168.0.112:5000/predict', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email })
-    });
-    const data = await response.json();
-    // alert(`Result: ${data.result}`);
-    setResult(data.result);
-    };
+  const checkSpamEmails = async () => {
+    try {
+      const response = await axios.get('http://192.168.0.112:5000/check_spam_emails');
+      setStatus('Server response received'); // Update status
+      setEmailStatus(response.data.emails); // Update email statuses
+    } catch (error) {
+      console.error('Error checking spam emails:', error);
+    }
+  };
 
   return (
-    <LinearGradient colors={['rgba(255, 254, 230, 0.7)', 'rgba(6, 66, 66, 0.2)']}            
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0 }} 
-        style={styles.container}
-        >
-      <TextInput
-        style={styles.input}
-        placeholder="Enter email"
-        placeholderTextColor="grey"
-        onChangeText={text => setEmail(text)}
-        value={email}
-        multiline
-        numberOfLines={6}
-      />
-      <Button style={styles.btn} title="Predict" onPress={predictSpam} />
-      {result ? <Text style={styles.result}>{`Result: ${result}`}</Text> : null}
-    </LinearGradient>
+    <View style={styles.container}>
+      <Text style={styles.status}>Status: {status}</Text> 
+      <Button title="Check Spam Emails" onPress={checkSpamEmails} />
+
+
+      {emailStatus.length > 0 &&
+        <View style={styles.emailContainer}>
+          <Text style={styles.emailHeader}>Email Statuses:</Text>
+          <View style={styles.emailList}>
+            {emailStatus.map((email, index) => (
+              <View style={styles.cont}>
+                <View key={index} style={styles.emailItem}>
+                  <Text style={styles.subject}>Subject: {email.subject}</Text>
+                  <Text style={styles.sender}>Sender: {email.sender}</Text>
+                  <Text style={styles.body}>Body: {email.body}</Text>
+                  <Text style={styles.spam}>{email.isSpam ? 'Spam detected' : 'Not spam'}</Text>
+                </View>
+            </View>
+          ))}
+        </View>
+        </View>
+      }
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: SIZES.width,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f0f0f0',
   },
-  input: {
-    width: '100%',
-    height: 100,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
+  status: {
     marginBottom: 10,
-    textAlignVertical: 'top',
-    paddingVertical: 10,
-    fontFamily: 'semibold',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  result: {
+  emailContainer: {
     marginTop: 20,
-    fontSize: 19,
-    fontFamily: 'bold',
-    color: 'green',
   },
-  btn: {
-    width: '100%',
+  emailHeader: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  cont: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  emailItem: {
+    marginBottom: 20,
+    width: '50%',
+    backgroundColor: '#f2f2f2',
+  },
+  subject: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  sender: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  body: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  spam: {
+    fontSize: 14,
+    color: 'red',
   },
 });
 
