@@ -5,6 +5,7 @@ import imaplib
 import email
 from email.header import decode_header
 from datetime import datetime, timedelta
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -89,12 +90,11 @@ def check_spam_emails():
         # Append email status to the list
         email_statuses.append({
             'subject': subject,
-            'sender': sender,  # Include sender's email address in the response
+            'sender': sender,  
             'body': message_body,
             'isSpam': is_spam
         })
 
-    # Logout from the server
     imap_conn.logout()
 
     return {'status': 'Success', 'code': 200, 'emails': email_statuses}

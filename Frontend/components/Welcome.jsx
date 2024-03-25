@@ -1,39 +1,24 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { COLORS, SIZES } from '../constants';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
-import SignBtn from "./SignBtn";
-
 
 const Welcome = () => {
-    const [isMenuVisible, setIsmenuVisible] = useState(false);
-
-    const toggleMenu =() =>{
-        setIsmenuVisible(!isMenuVisible);
-    }
-    const navigation = useNavigation();
   return (
-    <LinearGradient colors={['rgba(255, 254, 230, 0.7)', 'rgba(6, 66, 66, 0.2)']}            
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0 }} 
-        style={styles.container}
-        >
-        <View style={styles.navbar}>
-            <Text style={{color: COLORS.primary, fontSize: 20, fontWeight: 'bold'}}>
-                Spam Detection
-            </Text>
-        
-        </View>
+    <View style={styles.container}>
+      <View style={styles.navbar}>
+          <Text style={{color: COLORS.primary, fontSize: 20, fontWeight: 'bold'}}>
+              Spam Detection
+          </Text>
+      </View>
       <View style={styles.welcomeCont}>
         <View style={styles.header}>
-            <Text style={styles.title}>Welcome to Spam Detection</Text>
-            <Text style={styles.subtitle}>Protect your inbox from <Text style={{color:COLORS.red}}>unwanted </Text>emails</Text>
+            <Text style={styles.title}>AI-based Platform</Text>
+            <Text style={styles.title}>to Increase Your</Text>
+            <Text style={styles.subtitle}>Email Deliverability.</Text>
             <Text style={styles.description}>
                 Spam Detection uses advanced machine learning algorithms to analyze emails and 
                 determine if they are spam or not. Simply enter an email below to check its spam score.
             </Text>
-
         </View>
         <View>
           <Image
@@ -45,15 +30,18 @@ const Welcome = () => {
           />
         </View>
       </View>
-    </LinearGradient>
+    </View>
+   
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     width: SIZES.width,
+    height: SIZES.height*0.5,
     padding: 20,
-    backgroundColor: '#f0f0f0',
+
+
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -77,19 +65,19 @@ const styles = StyleSheet.create({
 
    },
   title: {
-    fontSize: 44,
+    fontSize: 34,
     fontWeight: 'bold',
     marginBottom: 10,
   },
   subtitle: {
-    fontSize: 26,
+    fontSize: 30,
     fontFamily: 'semibold',
-    color: '#666',
+    color: 'blue',
     marginTop: -10,
   },
   description: {
     width: '80%',
-    fontSize: 18,
+    fontSize: 15,
     color: '#000',
     marginTop: 10,
   },
