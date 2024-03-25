@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { SIZES } from '../constants';
 
 const Predict = () => {
   const [status, setStatus] = useState('');
@@ -45,6 +46,7 @@ const Predict = () => {
 
 const styles = StyleSheet.create({
   container: {
+    width:SIZES.width,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -63,14 +65,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  cont: {
+  emailList: {
+    width: '100%',
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',    
   },
   emailItem: {
     marginBottom: 20,
-    width: '50%',
+    width: '100%',
     backgroundColor: '#f2f2f2',
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 1,
+    alignItems: 'center',
   },
   subject: {
     fontSize: 14,
