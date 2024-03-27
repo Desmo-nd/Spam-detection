@@ -17,8 +17,8 @@ vectorizer = joblib.load('vectorizer.pkl')
 # IMAP configuration
 imap_server = 'imap.gmail.com'
 imap_port = 993
-username = 'mwrgdesmond@gmail.com'
-password = 'zolb fgjb vksq ospq'
+username = ''
+password = ''
 
 def check_spam_emails():
     # Connect to the IMAP server
